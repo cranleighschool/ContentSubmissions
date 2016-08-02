@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	{% block head %}
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Staff Bios</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/style.css" rel="stylesheet">
+	<link href="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<script src="vendor/tinymce/tinymce/tinymce.min.js"></script>
+	<script src="assets/scripts/tinymce-setup.js"></script>
+	{% endblock %}
+  </head>
+  <body>
+
+    <div id="page" class="container">
+		{% block content %}
+		<div class="starter-template">
+			<div class="jumbotron"><h1>Write your Staff Biography</h1></div>
+			<h2>What is this?</h2>
+			<p class="lead">You may have heard we're building a new website for Cranleigh School. As part of the new site we want to place an emphasis on the people that are part of the Cranleigh Community. - That's you!</p>
+			<p class="lead">There's going to be an improved integration that showcases the staff for each subject, house, sport, etc. </p>
+			<p class="lead"><a id="single_image" href="assets/images/bodders.png">Here's an example.</a></p>
+			<p class="lead">We would love to make sure that your biography is up to date, with accurate information but most importantly, personal to you.</p>
+
+			<h2>Please fill in this form</h2>
+			<div class="well">
+				<form method="post">
+					<div class="form-group">
+						<label for="username">Username</label>
+						<input required="required" type="text" name="username" class="input-lg form-control strtoupper" id="username" placeholder="Cranleigh Username (eg: DJF)">
+					</div>
+					<div class="form-group">
+						<label for="bio">Biography</label>
+						<p class="">Please write 50-100 words about you, your achievements and the things you love.</p>
+						<textarea class="form-control" name="bio" id="bio" placeholder="Bio"></textarea>
+					</div>
+					<a href="javascript: submitForm()" class="btn btn-cranleigh btn-lg">Submit</a>
+				</form>
+			</div>
+		</div>
+		{% endblock %}
+
+	</div><!-- /.container -->
+
+
+    {% block foot %}
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="vendor/twbs/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+    <script src="vendor/ifightcrime/bootstrap-growl/jquery.bootstrap-growl.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+	<script src="assets/scripts/theme.js"></script>
+	
+	<script>
+		{% if message %}
+			$.bootstrapGrowl("{{message.msg}}", { type: '{{message.type}}', align:'center',width:'auto' });
+			<!-- Example -->
+		{% endif %}
+	</script>
+	{% endblock %}
+  </body>
+</html>
