@@ -15,6 +15,9 @@ class SubmissionController extends Controller
 	protected $school = false;
 	public function __construct() {
 		//	var_dump(\Route::current()->parameters());
+		
+		$this->middleware('auth');
+
 		$this->get_school(\Route::current()->parameters()['school']);
 		if ($this->school == false):
 			abort(404);
@@ -41,6 +44,7 @@ class SubmissionController extends Controller
 	public function errors($array) {
 		return response()->json($array, 400);
 	}
+	
 	protected function rules() {
 		return array(
 			'photo_one' => 'required|image',
@@ -93,12 +97,7 @@ class SubmissionController extends Controller
 					
 		$save = $submission->create($request->all());
 		$request->session()->flash("message", "New Submission Submitted!");
-		return redirect(route('{school}.submissions.index', ['school'=>$this->school->slug]));
-        return response()->json(['success' => true], 200);
-        
-        var_dump($_POST);
-        var_dump($_FILES);
-        
+		return redirect(route('submissions.index', ['school'=>$this->school->slug]));
     }
 
     /**

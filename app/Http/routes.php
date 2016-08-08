@@ -11,19 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-//	$users = Users->all();
-//	var_dump($users);
-    return redirect()->route('{school}.submissions.index', ['prep']);
+/*Route::get('/', function () {
+	$users = \App\User::all();
+	var_dump($users);
+//    return redirect()->route('{school}.submissions.index', ['prep']);
 });
-Route::group(['prefix'=>'{school}'], function() {
-	
+*/
+Route::auth();
+
+Route::group(['domain'=>'{school}.submissions.local'], function() {
+
 	Route::get('/', function($school) {
-			return redirect()->route('{school}.submissions.index',[$school]);
+		return redirect()->route('submissions.index',[$school]);
 	});
-	
+		
 	Route::resource('submissions', 'SubmissionController');
 });
-Route::auth();
 
 Route::get('/home', 'HomeController@index');

@@ -8,8 +8,8 @@
                 <div class="panel-heading">Create a New Submission</div>
 
                 <div class="panel-body">
-                {{ Form::open(array('files'=>true, 'route'=>array('{school}.submissions.store', $school->slug)))}}
-				{{ Form::hidden('user') }}
+                {{ Form::open(array('files'=>true, 'route'=>array('submissions.store', $school->slug)))}}
+				{{ Form::hidden('user', Auth::user()->id) }}
                 {{ Form::hidden('school', $school->id) }}
                 {{ Form::bsText('title') }}
                 {{ Form::wysiwyg('content', null, array("class"=>"wysiwyg form-control")) }}

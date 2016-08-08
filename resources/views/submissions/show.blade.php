@@ -8,7 +8,7 @@
                 <div class="panel-heading clearfix">
                 	<h2 class="panel-title pull-left" style="padding-top:7.5px;">Submissions</h2>
                 	<div class="btn-group pull-right">
-                		<a href="{{route('{school}.submissions.edit', ['school'=>$school->slug, 'id'=>$submission->id])}}" class="btn btn-sm btn-info">Edit</a>
+                		<a href="{{route('submissions.edit', ['school'=>$school->slug, 'id'=>$submission->id])}}" class="btn btn-sm btn-info">Edit</a>
                 	</div>
                 </div>
 
@@ -18,8 +18,7 @@
 			                <h3>{{$submission->title}}</h3>
 				                {!! $submission->content !!}
                 		</div>
-                		<div class="col-md-4">
-								
+                		<div class="col-md-4">	
 							<h4>Supplementary Links</h4>
 							{{$submission->links}}
 							

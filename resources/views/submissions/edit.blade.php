@@ -8,7 +8,7 @@
                 <div class="panel-heading">Edit Submission: &quot;{{$submission->title}}&quot;</div>
 
                 <div class="panel-body">
-	                {{ Form::open(array('files'=>true,'method'=>'PUT', 'route'=>array('{school}.submissions.update', $school->slug, $submission->id)))}}
+	                {{ Form::open(array('files'=>true,'method'=>'PUT', 'route'=>array('submissions.update', $school->slug, $submission->id)))}}
 					{{ Form::hidden('user', $submission->user) }}
 	                {{ Form::hidden('school', $submission->school) }}
 	                {{ Form::bsText('title', $submission->title) }}
