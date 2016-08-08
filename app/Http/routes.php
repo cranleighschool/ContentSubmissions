@@ -17,10 +17,11 @@
 //    return redirect()->route('{school}.submissions.index', ['prep']);
 });
 */
+
 Route::auth();
 
-Route::group(['domain'=>'{school}.submissions.local'], function() {
-
+Route::group(['domain'=>'test.{school}.org'], function($school) {
+	
 	Route::get('/', function($school) {
 		return redirect()->route('submissions.index',[$school]);
 	});

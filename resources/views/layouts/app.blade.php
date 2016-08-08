@@ -28,7 +28,11 @@
     </style>
 	@yield('head')
 </head>
-<body id="app-layout" class="SLUG">
+<?php
+
+	$s = new App\Schools();
+	?>
+<body id="app-layout" class="{{ $s->get_site() }}">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -56,8 +60,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                        <li class="prep"><a href="{{ url('/prep') }}">Prep</a></li>
-                        <li class="senior"><a href="{{ url('/senior') }}">Senior</a></li>
+                        <li class=""><a href="{{ url('/login') }}">Login</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
