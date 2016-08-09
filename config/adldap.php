@@ -30,7 +30,7 @@ return [
             |
             */
 
-            'auto_connect' => false, // Needs to be set to FALSE if you want fallback login to work.
+            'auto_connect' => true, // Needs to be set to FALSE if you want fallback login to work.
 
             /*
             |--------------------------------------------------------------------------
