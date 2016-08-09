@@ -49,6 +49,23 @@ body.cranprep {
 .navbar-default {
 	background-color: #000;
 	border: none;
+	
+	.navbar-nav > .open > a,
+	.navbar-nav > .open > a:hover,
+	.navbar-nav > .open > a:focus {
+		background-color:$maroon; 
+	}
+	.navbar-nav {
+		.dropdown {
+			a:hover {
+				background-color: $maroon;
+			}
+			.dropdown-menu {
+				background-color:$light-grey;
+			}
+		}
+		
+	}
 }
 
 .well {

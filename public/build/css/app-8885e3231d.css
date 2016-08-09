@@ -5730,6 +5730,7 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
+/* Cranleigh Main Colours Guidlines */
 form.delete-form {
   display: inline; }
 
@@ -5774,6 +5775,14 @@ body.cranprep {
 .navbar-default {
   background-color: #000;
   border: none; }
+  .navbar-default .navbar-nav > .open > a,
+  .navbar-default .navbar-nav > .open > a:hover,
+  .navbar-default .navbar-nav > .open > a:focus {
+    background-color: #AB162B; }
+  .navbar-default .navbar-nav .dropdown a:hover {
+    background-color: #AB162B; }
+  .navbar-default .navbar-nav .dropdown .dropdown-menu {
+    background-color: #8A8B8C; }
 
 .well {
   background: #8CB7E8;
