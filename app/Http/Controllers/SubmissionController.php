@@ -12,22 +12,24 @@ use App\Schools;
 
 class SubmissionController extends Controller
 {
-	protected $school = false;
-	public function __construct() {
-		//	var_dump(\Route::current()->parameters());
-		
-		$this->middleware('auth');
+    protected $school = false;
+    public function __construct()
+    {
+        //	var_dump(\Route::current()->parameters());
+        
+        $this->middleware('auth');
 
-		$this->get_school(\Route::current()->parameters()['school']);
-		if ($this->school == false):
-			abort(404);
-		endif;
-	}
-	
-	protected function get_school($school) {
-		$find_school = Schools::where('slug', $school)->first();
-		$this->school = $find_school;
-	}
+        $this->get_school(\Route::current()->parameters()['school']);
+        if ($this->school == false) :
+            abort(404);
+        endif;
+    }
+    
+    protected function get_school($school)
+    {
+        $find_school = Schools::where('slug', $school)->first();
+        $this->school = $find_school;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -37,24 +39,25 @@ class SubmissionController extends Controller
     {
         
 
-		return view('submissions/list', ['school'=>$this->school, 'submissions'=>Submissions::where('school', $this->school->id)->get()]);
-
+        return view('submissions/list', ['school'=>$this->school, 'submissions'=>Submissions::where('school', $this->school->id)->get()]);
     }
 
-	public function errors($array) {
-		return response()->json($array, 400);
-	}
-	
-	protected function rules() {
-		return array(
-			'photo_one' => 'required|image',
-			'photo_two' => 'required|image',
-			'photo_three' => 'required|image',
-			'title' => 'required',
-			'links' => 'required',
-			'content' => 'required',
-		);
-	}
+    public function errors($array)
+    {
+        return response()->json($array, 400);
+    }
+    
+    protected function rules()
+    {
+        return array(
+            'photo_one' => 'required|image',
+            'photo_two' => 'required|image',
+            'photo_three' => 'required|image',
+            'title' => 'required',
+            'links' => 'required',
+            'content' => 'required',
+        );
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -79,31 +82,31 @@ class SubmissionController extends Controller
         
         $validator = Validator::make($request->all(), $this->rules());
         if ($validator->fails()) {
-	        return \Redirect::back()->withErrors($validator)->withInput();
+            return \Redirect::back()->withErrors($validator)->withInput();
         }
         $destinationPath = \Storage::disk('public');
-		$images = array();
-		$images['one'] = $request->photo_one;
-		$images['two'] = $request->photo_two;
-		$images['three'] = $request->photo_three;
-		$s_images = array(); // ready for the new array
-		foreach ($images as $key => $image):
-			$time = time();
-			$filename = 'user_'.$request->user.'/'.time().'/'.sha1($key).'_'.$image->getClientOriginalName();
-			$s_images[] = $filename;
+        $images = array();
+        $images['one'] = $request->photo_one;
+        $images['two'] = $request->photo_two;
+        $images['three'] = $request->photo_three;
+        $s_images = array(); // ready for the new array
+        foreach ($images as $key => $image) :
+            $time = time();
+            $filename = 'user_'.$request->user.'/'.time().'/'.sha1($key).'_'.$image->getClientOriginalName();
+            $s_images[] = $filename;
 //			$request->{"photo_".$key} = $filename;
-			$destinationPath->put($filename, file_get_contents($image->getRealPath()));
-			unset($request->{"photo_".$key});
-		endforeach;
-		$request->except(['photo_one']);
-		
-	
-		$request->photos = serialize($s_images);
-		$submission = new Submissions();
-					
-		$save = $submission->create($request->all());
-		$request->session()->flash("message", "New Submission Submitted!");
-		return redirect(route('submissions.index', ['school'=>$this->school->slug]));
+            $destinationPath->put($filename, file_get_contents($image->getRealPath()));
+            unset($request->{"photo_".$key});
+        endforeach;
+        $request->except(['photo_one']);
+        
+    
+        $request->photos = serialize($s_images);
+        $submission = new Submissions();
+                    
+        $save = $submission->create($request->all());
+        $request->session()->flash("message", "New Submission Submitted!");
+        return redirect(route('submissions.index', ['school'=>$this->school->slug]));
     }
 
     /**
@@ -116,8 +119,8 @@ class SubmissionController extends Controller
     {
         //
         $submissions = Submissions::where([
-        	['id', '=' ,$id],
-        	['school', '=', $this->school->id]
+            ['id', '=' ,$id],
+            ['school', '=', $this->school->id]
         ])->firstOrFail();
 
         $submissions->author = \App\User::find($submissions->user);
@@ -134,8 +137,8 @@ class SubmissionController extends Controller
     {
         //
         $submissions = Submissions::where([
-        	['id', '=' ,$id],
-        	['school', '=', $this->school->id]
+            ['id', '=' ,$id],
+            ['school', '=', $this->school->id]
         ])->firstOrFail();
 
         return view('submissions/edit', ['school'=>$this->school, 'submission'=>$submissions]);
@@ -165,10 +168,8 @@ class SubmissionController extends Controller
         
         $entry = Submissions::find($id);
         $entry->delete();
-		\Request::session()->flash("message", "Deleted: &quot;".$entry->title."&quot;");
+        \Request::session()->flash("message", "Deleted: &quot;".$entry->title."&quot;");
 
-		return redirect(route('{school}.submissions.index', ['school'=>$this->school->slug]));
-
-        
+        return redirect(route('{school}.submissions.index', ['school'=>$this->school->slug]));
     }
 }
