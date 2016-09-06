@@ -90,8 +90,9 @@ class SubmissionController extends Controller
 		foreach ($images as $key => $image):
 			$time = time();
 			$filename = 'user_'.$request->user.'/'.time().'/'.sha1($key).'_'.$image->getClientOriginalName();
-			$request->{"photo_"}.$key = $filename;
+			$request->{"photo_".$key} = $filename;
 			$destinationPath->put($filename, file_get_contents($image->getRealPath()));
+			unset($request->{"photo_".$key});
 		endforeach;
 		$submission = new Submissions();
 					
