@@ -49,14 +49,14 @@ class SubmissionController extends Controller
     
     protected function rules()
     {
-        return array(
+        return [
             'photo_one' => 'required|image',
             'photo_two' => 'required|image',
             'photo_three' => 'required|image',
             'title' => 'required',
             'links' => 'required',
             'content' => 'required',
-        );
+        ];
     }
     /**
      * Show the form for creating a new resource.
@@ -85,11 +85,11 @@ class SubmissionController extends Controller
             return \Redirect::back()->withErrors($validator)->withInput();
         }
         $destinationPath = \Storage::disk('public');
-        $images = array();
+        $images = [];
         $images['one'] = $request->photo_one;
         $images['two'] = $request->photo_two;
         $images['three'] = $request->photo_three;
-        $s_images = array(); // ready for the new array
+        $s_images = []; // ready for the new array
         foreach ($images as $key => $image) :
             $time = time();
             $filename = 'user_'.$request->user.'/'.time().'/'.sha1($key).'_'.$image->getClientOriginalName();

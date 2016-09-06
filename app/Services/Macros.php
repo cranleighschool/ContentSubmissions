@@ -5,26 +5,26 @@
     
 class Macros extends FormBuilder
 {
-    public function deleteButton($url, $button_label = "Delete", $form_parameters = array(), $button_options = array())
+    public function deleteButton($url, $button_label = "Delete", $form_parameters = [], $button_options = [])
     {
         if (empty($form_parameters)) {
-            $form_parameters = array(
+            $form_parameters = [
                 'method'=>'DELETE',
                 'class' =>'delete-form',
                 'url'   =>$url
-            );
+            ];
         } else {
             $form_parameters['url'] = $url;
             $form_parameters['method'] = 'DELETE';
         };
             
-        $button_options = array_merge(array("class"=>"btn btn-danger btn-sm"), $button_options);
+        $button_options = array_merge(["class"=>"btn btn-danger btn-sm"], $button_options);
             
         return \Form::open($form_parameters)
             . \Form::submit($button_label, $button_options)
             . \Form::close();
     }
-    public function selectState($name, $selected = null, $options = array())
+    public function selectState($name, $selected = null, $options = [])
     {
         $list = [
             '' => 'Select One...',
