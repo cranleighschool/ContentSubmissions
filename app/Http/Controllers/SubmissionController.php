@@ -27,6 +27,7 @@ class SubmissionController extends Controller
     
     protected function get_school($school)
     {
+	    // Perhaps try this with whereStrict() instead of where() and see what happens?
         $find_school = Schools::where('slug', $school)->first();
         $this->school = $find_school;
     }
@@ -38,7 +39,7 @@ class SubmissionController extends Controller
     public function index($school)
     {
         
-
+	    // Perhaps try this with whereStrict() instead of where() and see what happens?
         return view('submissions/list', ['school'=>$this->school, 'submissions'=>Submissions::where('school', $this->school->id)->get()]);
     }
 
@@ -118,6 +119,7 @@ class SubmissionController extends Controller
     public function show($school, $id)
     {
         //
+        	    // Perhaps try this with whereStrict() instead of where() and see what happens?
         $submissions = Submissions::where([
             ['id', '=' ,$id],
             ['school', '=', $this->school->id]
@@ -136,6 +138,7 @@ class SubmissionController extends Controller
     public function edit($school, $id)
     {
         //
+        	    // Perhaps try this with whereStrict() instead of where() and see what happens?
         $submissions = Submissions::where([
             ['id', '=' ,$id],
             ['school', '=', $this->school->id]
