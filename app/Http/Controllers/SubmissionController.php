@@ -86,14 +86,19 @@ class SubmissionController extends Controller
 		$images['one'] = $request->photo_one;
 		$images['two'] = $request->photo_two;
 		$images['three'] = $request->photo_three;
-		
+		$s_images = array(); // ready for the new array
 		foreach ($images as $key => $image):
 			$time = time();
 			$filename = 'user_'.$request->user.'/'.time().'/'.sha1($key).'_'.$image->getClientOriginalName();
-			$request->{"photo_".$key} = $filename;
+			$s_images[] = $filename;
+//			$request->{"photo_".$key} = $filename;
 			$destinationPath->put($filename, file_get_contents($image->getRealPath()));
 			unset($request->{"photo_".$key});
 		endforeach;
+		$request->except(['photo_one']);
+		
+	
+		$request->photos = serialize($s_images);
 		$submission = new Submissions();
 					
 		$save = $submission->create($request->all());

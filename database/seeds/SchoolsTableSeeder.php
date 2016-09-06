@@ -12,13 +12,13 @@ class SchoolsTableSeeder extends Seeder
     public function run()
     {
         //
-	DB::table('schools')->insert([
-		'slug' => 'cranleigh',
-		'title' => 'Cranleigh School'
-	]);
-	DB::table('schools')->insert([
-		'slug' => 'cranprep',
-		'title' => 'Cranleigh Prep School'
-	]);
+		DB::table('schools')->insert([
+			'slug' => 'cranleigh',
+			'title' => 'Cranleigh School'
+		]);
+		DB::table('schools')->insert([
+			'slug' => 'cranprep',
+			'title' => 'Cranleigh Prep School'
+		]);
     }
 }
