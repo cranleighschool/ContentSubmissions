@@ -23,11 +23,14 @@
 							{{$submission->links}}
 							
 							<h4>Photos</h4>
-							<ul>
+							<div class="row">
+							
 							@foreach ($submission->photos as $photo)
-							<li><a href="{{$photo}}">{{$photo}}</a></li>
+							<div class="col-md-6"><a href="{{$photo}}">
+								<img src="{{$photo}}" class="img-responsive" />
+							</a></div>
 							@endforeach
-							</ul>			
+							</div>			
 							<h4>Author</h4>
 							{{($submission->author->name)}}
                 		</div>
