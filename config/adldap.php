@@ -117,9 +117,9 @@ return [
                 */
 
                 'domain_controllers' => [
-                	'csdc01.cranleigh.org', 
-                	'csdc02.cranleigh.org',
-                	'csdc03.cranleigh.org'
+                    'csdc01.cranleigh.org',
+                    'csdc02.cranleigh.org',
+                    'csdc03.cranleigh.org'
                 ],
 
                 /*

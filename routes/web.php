@@ -20,13 +20,13 @@
 
 Route::auth();
 
-Route::group(['domain'=>env('CRAN_SUBDOMAIN').'.{school}.org'], function($school) {
-	
-	Route::get('/', function($school) {
-		return redirect()->route('submissions.index',[$school]);
-	});
-		
-	Route::resource('submissions', 'SubmissionController');
+Route::group(['domain'=>env('CRAN_SUBDOMAIN').'.{school}.org'], function ($school) {
+    
+    Route::get('/', function ($school) {
+        return redirect()->route('submissions.index', [$school]);
+    });
+        
+    Route::resource('submissions', 'SubmissionController');
 });
 
 Route::get('/home', 'HomeController@index');
