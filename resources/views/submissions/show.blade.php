@@ -23,10 +23,11 @@
 							{{$submission->links}}
 							
 							<h4>Photos</h4>
-							{{$submission->photo_one}}
-							{{$submission->photo_two}}
-							{{$submission->photo_three}}
-			
+							<ul>
+							<li>{{$submission->photo_one}}</li>
+							<li>{{$submission->photo_two}}</li>
+							<li>{{$submission->photo_three}}</li>
+							</ul>			
 							<h4>Author</h4>
 							{{($submission->author->name)}}
                 		</div>
