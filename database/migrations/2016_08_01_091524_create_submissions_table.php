@@ -18,9 +18,10 @@ class CreateSubmissionsTable extends Migration
             $table->text('content');
             $table->integer('user');
             $table->text('links');
-            $table->text('photo_one');
-			$table->text('photo_two');
-			$table->text('photo_three');
+	$table->text("photos")->nullable();
+//            $table->text('photo_one');
+//			$table->text('photo_two');
+//			$table->text('photo_three');
             $table->integer('school');
             $table->index('user');
             $table->index('school');

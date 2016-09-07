@@ -24,9 +24,9 @@
 							
 							<h4>Photos</h4>
 							<ul>
-							<li>{{$submission->photo_one}}</li>
-							<li>{{$submission->photo_two}}</li>
-							<li>{{$submission->photo_three}}</li>
+							@foreach ($submission->photos as $photo)
+							<li><a href="{{$photo}}">{{$photo}}</a></li>
+							@endforeach
 							</ul>			
 							<h4>Author</h4>
 							{{($submission->author->name)}}

@@ -16,18 +16,31 @@
               
                 {{ Form::bsTextarea('links', null, array('rows'=>3), "Any website URLs to supplement your story? Or where I can find more information? Please write one link per line.") }}
               
+
+
                 <h3>Photos</h3>
                 <p class="help-block">Please upload three photos to supplement your story. Please upload large, photos. (Photos less than 300px wide are too small!)</p>
                 <div class="row">
-                	<div class="col-md-4">
-                		{{ Form::bsFile('photo_one', null, array(), "Upload a Photo") }}
+                	<div class="col-md-12">
+						<div class="form-group{{ $errors->has('photos') ? ' has-error' : '' }}">
+						    <input id="photos" type="file" multiple="multiple" value="{{ old('photos') }}" class="form-control" name="photos[]">
+
+                                @if ($errors->has('photos'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('photos') }}</strong>
+                                    </span>
+                                @endif
+						</div>
                 	</div>
+                {{--	<div class="col-md-4">
+                		{{ Form::bsFile('photo_one', null, array(), "Upload a Photo") }}
+                	</div> 
                 	<div class="col-md-4">
 						{{ Form::bsFile('photo_two', null, array(), "Upload a Photo") }}
                 	</div>
                 	<div class="col-md-4">
 						{{ Form::bsFile('photo_three', null, array(), "Upload a Photo") }}
-                	</div>
+                	</div> --}}
                 </div>
                 {{ Form::submit('Update', array('class'=>'btn btn-primary'))}}
 

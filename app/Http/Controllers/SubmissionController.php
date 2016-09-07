@@ -9,10 +9,13 @@ use Input;
 use Validator;
 use App\Submissions;
 use App\Schools;
+use Imageupload;
+use Illuminate\Support\Facades\Log;
 
 class SubmissionController extends Controller
 {
     protected $school = false;
+    protected $filenames = array();
     public function __construct()
     {
         //	var_dump(\Route::current()->parameters());
@@ -51,9 +54,10 @@ class SubmissionController extends Controller
     protected function rules()
     {
         return [
-            'photo_one' => 'required|image',
-            'photo_two' => 'required|image',
-            'photo_three' => 'required|image',
+	    //    'photos' => 'required|image',
+//            'photo_one' => 'required|image',
+  //          'photo_two' => 'required|image',
+    //        'photo_three' => 'required|image',
             'title' => 'required',
             'links' => 'required',
             'content' => 'required',
@@ -70,6 +74,27 @@ class SubmissionController extends Controller
         return view('submissions/create', ['school'=>$this->school]);
     }
 
+	protected function multiple_upload() {
+		$files = Input::file("photos");
+		$file_count = count($files);
+		
+		$uploadcount = 0;
+
+		foreach($files as $file):
+			$rules = array("file" => "required|mimes:png,gif,jpeg");
+			$validator = Validator::make(array('file'=>$file),$rules);
+			if($validator->passes()) {
+				$result = Imageupload::upload($file, $file->getClientOriginalName()."_".sha1(time()), $this->school->slug);
+				$filepath = explode(public_path(), $result['original_filepath']);
+				Log::info($filepath);
+				$this->filenames[] = $filepath[1];
+				$uploadcount++;
+			}
+		endforeach;
+		if ($uploadcount==$file_count) {
+			\Session::flash('success', $uploadcount." files uploaded successfully.");
+		}
+	}
     /**
      * Store a newly created resource in storage.
      *
@@ -78,37 +103,28 @@ class SubmissionController extends Controller
      */
     public function store(Request $request)
     {
-        $image = Input::file('photo_one');
-     
-        
+        //$image = Input::file('photo_one');
+		$this->multiple_upload();
+      
         $validator = Validator::make($request->all(), $this->rules());
         if ($validator->fails()) {
             return \Redirect::back()->withErrors($validator)->withInput();
         }
-        $destinationPath = \Storage::disk('public');
-        $images = [];
-        $images['one'] = $request->photo_one;
-        $images['two'] = $request->photo_two;
-        $images['three'] = $request->photo_three;
-        $s_images = []; // ready for the new array
-        foreach ($images as $key => $image) :
-            $time = time();
-            $filename = 'user_'.$request->user.'/'.time().'/'.sha1($key).'_'.$image->getClientOriginalName();
-            $s_images[] = $filename;
-//			$request->{"photo_".$key} = $filename;
-            $destinationPath->put($filename, file_get_contents($image->getRealPath()));
-            unset($request->{"photo_".$key});
-        endforeach;
-        $request->except(['photo_one']);
-        
-    
-        $request->photos = serialize($s_images);
+
         $submission = new Submissions();
-                    
-        $save = $submission->create($request->all());
+
+		Input::merge(array("photos"=>"test_value"));
+
+
+        $save = $submission->create($request->except('photos'));
+        Log::info($save);
+		$edit = Submissions::find($save->id);
+		$edit->photos = serialize($this->filenames);
+		$edit->save();
         $request->session()->flash("message", "New Submission Submitted!");
         return redirect(route('submissions.index', ['school'=>$this->school->slug]));
     }
+
 
     /**
      * Display the specified resource.
@@ -118,6 +134,7 @@ class SubmissionController extends Controller
      */
     public function show($school, $id)
     {
+
         //
         	    // Perhaps try this with whereStrict() instead of where() and see what happens?
         $submissions = Submissions::where([
@@ -126,6 +143,7 @@ class SubmissionController extends Controller
         ])->firstOrFail();
 
         $submissions->author = \App\User::find($submissions->user);
+        $submissions->photos = unserialize($submissions->photos);
         return view('submissions/show', ['school'=>$this->school, 'submission'=>$submissions]);
     }
 
@@ -173,6 +191,6 @@ class SubmissionController extends Controller
         $entry->delete();
         \Request::session()->flash("message", "Deleted: &quot;".$entry->title."&quot;");
 
-        return redirect(route('{school}.submissions.index', ['school'=>$this->school->slug]));
+        return redirect(route('submissions.index', ['school'=>$this->school->slug]));
     }
 }

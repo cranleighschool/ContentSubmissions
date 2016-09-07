@@ -179,7 +179,11 @@ return [
 	      */
         Adldap\Laravel\AdldapServiceProvider::class,
         Adldap\Laravel\AdldapAuthServiceProvider::class,
-
+        
+        /* 
+	      * Upload Image
+	      */
+		  Matriphe\Imageupload\ImageuploadServiceProvider::class
     ],
 
     /*
@@ -228,8 +232,10 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'HTML' => Collective\Html\HtmlFacade::class,
         'Input' => Illuminate\Support\Facades\Input::class,
         'Adldap' => Adldap\Laravel\Facades\Adldap::class,
+        'Imageupload' => Matriphe\Imageupload\ImageuploadFacade::class,
 
     ],
 
