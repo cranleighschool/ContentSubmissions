@@ -24,6 +24,8 @@
 							
 							<h4>Photos</h4>
 							{{$submission->photo_one}}
+							{{$submission->photo_two}}
+							{{$submission->photo_three}}
 			
 							<h4>Author</h4>
 							{{($submission->author->name)}}
