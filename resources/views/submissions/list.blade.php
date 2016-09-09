@@ -34,7 +34,9 @@
                     			<td>{{App\User::findOrFail($submission->user)->name}}</td>
                     			<td>
 
-                    				<a href="{{route('submissions.edit', ['school'=>$school->slug, 'id'=>$submission->id])}}" class="btn btn-sm btn-primary">Edit</a>
+                    				@if ($submission->user == Auth::user()->id)
+										<a href="{{route('submissions.edit', ['school'=>$school->slug, 'id'=>$submission->id])}}" class="btn btn-sm btn-primary">Edit</a>
+                    				@endif
 
                     				<a href="{{route('submissions.show', ['school'=>$school->slug,'id'=>$submission->id])}}" class="btn btn-sm btn-info">Show</a>
 									@if ($submission->user == Auth::user()->id)

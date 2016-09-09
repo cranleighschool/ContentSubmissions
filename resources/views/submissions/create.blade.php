@@ -32,15 +32,6 @@
                                 @endif
 						</div>
                 	</div>
-                {{--	<div class="col-md-4">
-                		{{ Form::bsFile('photo_one', null, array(), "Upload a Photo") }}
-                	</div> 
-                	<div class="col-md-4">
-						{{ Form::bsFile('photo_two', null, array(), "Upload a Photo") }}
-                	</div>
-                	<div class="col-md-4">
-						{{ Form::bsFile('photo_three', null, array(), "Upload a Photo") }}
-                	</div> --}}
                 </div>
                 {{ Form::submit('Update', array('class'=>'btn btn-primary'))}}
 
