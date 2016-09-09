@@ -33,7 +33,7 @@
 						</div>
                 	</div>
                 </div>
-                {{ Form::submit('Update', array('class'=>'btn btn-primary'))}}
+                {{ Form::submit('Send', array('class'=>'btn btn-primary'))}}
 
                 {{ Form::close() }}
     
