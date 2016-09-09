@@ -154,17 +154,18 @@ class SubmissionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($school, $id)
-    {
+    { 
         //
         	    // Perhaps try this with whereStrict() instead of where() and see what happens?
         $submissions = Submissions::where([
             ['id', '=' ,$id],
             ['school', '=', $this->school->id]
         ])->firstOrFail();
+        $submissions->photos = unserialize($submissions->photos);
 
         return view('submissions/edit', ['school'=>$this->school, 'submission'=>$submissions]);
     }
-
+ 
     /**
      * Update the specified resource in storage.
      *
@@ -172,9 +173,18 @@ class SubmissionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $school, $id)
     {
-        //
+        $submission = Submissions::find($id);
+        $submission->title = $request->title;
+        $submission->content = $request->content;
+        $submission->links = $request->links;
+        $submission->save();
+
+        \Request::session()->flash("message", "Updated: &quot;".$submission->title."&quot;");
+
+        return redirect(route('submissions.show', ['school'=>$this->school->slug, 'submission' => $submission]));
+         
     }
 
     /**
@@ -185,8 +195,6 @@ class SubmissionController extends Controller
      */
     public function destroy($school, $id)
     {
-        //
-        
         $entry = Submissions::find($id);
         $entry->delete();
         \Request::session()->flash("message", "Deleted: &quot;".$entry->title."&quot;");
