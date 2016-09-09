@@ -41,6 +41,8 @@
         <div class="container">
             <div class="content">
                 <div class="title">Four Oh Four</div>
+		<p>You have tried to go to a page that doesn't exist! Hit &quot;back&quot; in your browser and try again!</p>
+		<img src="//3.bp.blogspot.com/-m13gO7cbZvA/T1Dwss7ZAuI/AAAAAAAAKPg/M2q4zNYGe0M/s1600/oacg404.gif" />
             </div>
         </div>
     </body>

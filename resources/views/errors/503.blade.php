@@ -41,6 +41,7 @@
         <div class="container">
             <div class="content">
                 <div class="title">Be right back.</div>
+		<p>There's a server error! Give it a try again in a couple of minutes!</p>
             </div>
         </div>
     </body>
