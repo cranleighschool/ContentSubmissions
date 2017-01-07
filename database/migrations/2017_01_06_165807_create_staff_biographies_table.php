@@ -15,6 +15,8 @@ class CreateStaffBiographiesTable extends Migration
     {
         Schema::create('staff_biographies', function (Blueprint $table) {
             $table->increments('id');
+			$table->string('username')->unique();
+            $table->text('biography');
             $table->timestamps();
         });
     }
