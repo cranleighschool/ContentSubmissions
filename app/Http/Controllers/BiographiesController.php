@@ -15,7 +15,8 @@ class BiographiesController extends Controller
      */
     public function index()
     {
-        //
+        $biographies = \App\StaffBiographies::all();
+        return view("biographies.index", ['biographies'=>$biographies]);
     }
 
     /**
