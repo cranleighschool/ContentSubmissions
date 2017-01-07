@@ -16,24 +16,8 @@
                 </div>
                 <div class="panel-body">
                 
-                	<table class="table table-hover table-condensed">
-                		<thead>
-                			<th>User</th>
-                			<th>Biography</th>
-                			<th>Last Updated</th>
-                		</thead>
-                    @foreach($biographies as $account)
-                    	<tbody>
-                    		<tr>
-                    			<td>
-                    				<a href="{{route('staff-biographies.edit', ['school'=>get_domain(), 'twitter'=>$account->id])}}">{{strtoupper($account->username)}}</a>
-								</td>
-								<td>{{substr(strip_tags($account->biography), 0, 70)}}</td>
-                    			<td>{{$account->updated_at}}</td>
-                    		</tr>
-                    	</tbody>
-                    @endforeach
-                	</table>
+                	<h3>Username: {{$user->username}}</h3>
+                	
                 </div>
             </div>
         </div>

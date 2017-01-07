@@ -60,6 +60,12 @@ class BiographiesController extends Controller
     public function edit($id)
     {
         //
+        $bio = \App\StaffBiographies::findOrFail($id);
+		$biographies = \App\StaffBiographies::all();
+        dd($biographies);
+        return view("biographies.edit", ['user'=>$bio]);
+		return view("biographies.index", ['biographies'=>$biographies]);
+
     }
 
     /**
