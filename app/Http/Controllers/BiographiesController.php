@@ -13,7 +13,7 @@ class BiographiesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($school)
     {
         $biographies = \App\StaffBiographies::all();
         return view("biographies.index", ['biographies'=>$biographies]);
@@ -24,7 +24,7 @@ class BiographiesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($school)
     {
         //
     }
@@ -46,7 +46,7 @@ class BiographiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($school, $id)
     {
         //
     }
@@ -57,7 +57,7 @@ class BiographiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($school, $id)
     {
         //
         $bio = \App\StaffBiographies::findOrFail($id);
@@ -75,7 +75,7 @@ class BiographiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $school, $id)
     {
         //
     }
@@ -86,7 +86,7 @@ class BiographiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($school, $id)
     {
         //
     }
