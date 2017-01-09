@@ -29,6 +29,8 @@ Route::group(['domain'=>env('CRAN_SUBDOMAIN').'.{school}.org'], function ($schoo
     Route::resource('submissions', 'SubmissionController');
     Route::resource('twitter', 'TwitterAccountsController');
     Route::resource('staff-biographies', 'BiographiesController');
+    Route::get('staff-biographies/search/{username}', 'BiographiesController@search');
+	Route::get('staff-biographies/find/{username}', 'BiographiesController@search');
 });
 
 Route::get('/home', 'HomeController@index');

@@ -17,6 +17,7 @@ class CreateStaffBiographiesTable extends Migration
             $table->increments('id');
 			$table->string('username')->unique();
             $table->text('biography');
+            $table->string('updated_by');
             $table->timestamps();
         });
     }

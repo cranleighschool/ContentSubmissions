@@ -11,7 +11,7 @@
 				<div class="panel-heading clearfix">
 					<h2 class="panel-title pull-left" style="padding-top:7.5px;">Staff Biographies</h2>
                 	<div class="btn-group pull-right">
-                	{{--	<a href="{{route('submissions.create', ['school'=>$school->slug])}}" class="btn btn-sm btn-success">Add New</a> --}}
+                	<a href="{{route('staff-biographies.create', ['school'=>'cranleigh'])}}" class="btn btn-sm btn-success">Add New</a>
                 	</div>
                 </div>
                 <div class="panel-body">
@@ -26,7 +26,7 @@
                     	<tbody>
                     		<tr>
                     			<td>
-                    				<a href="{{route('staff-biographies.edit', ['school'=>get_domain(), 'twitter'=>$account->id])}}">{{strtoupper($account->username)}}</a>
+                    				<a href="{{route('staff-biographies.edit', ['school'=>get_domain(), 'id'=>$account->id])}}">{{strtoupper($account->username)}}</a>
 								</td>
 								<td>{{substr(strip_tags($account->biography), 0, 70)}}</td>
                     			<td>{{$account->updated_at}}</td>

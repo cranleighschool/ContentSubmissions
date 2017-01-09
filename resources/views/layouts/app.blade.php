@@ -16,7 +16,14 @@
     <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
 
 	<script type="text/javascript" src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-	<script>tinymce.init({selector:'textarea.wysiwyg'});</script>
+	<script>tinymce.init({
+		selector:'textarea.wysiwyg',
+		height:250,
+		menubar:false,
+		plugins: "paste",
+		paste_as_text: true,
+		toolbar1: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright | bullist numlist outdent indent | forecolor backcolor',
+	});</script>
     <style>
         body {
             font-family: 'Lato';
@@ -86,6 +93,7 @@
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<script src="{{ elixir('js/all.js') }}"></script>
+	<script src="{{ elixir('js/all.js') }}"></script>
+	@yield('footer-scripts')
 </body>
 </html>

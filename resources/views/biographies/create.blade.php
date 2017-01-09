@@ -16,14 +16,12 @@
                 </div>
                 <div class="panel-body">
                 
-                	<h3>Username: {{strtoupper($user->username)}}</h3>
-                	<div class="well well-sm">{!!$user->biography!!}</div>
-                	<button class="btn btn-lg btn-info" id="edit-link">Edit Biography</button>
-                	<div id="editBox" style="display:none;">
-						{{ Form::open(array('files'=>false,'method'=>'PUT', 'route'=>array('staff-biographies.update','cranleigh', $user->id)))}}
-						{{ Form::hidden('username', $user->username) }}
-						{{ Form::wysiwyg('biography', $user->biography, array("class"=>"wysiwyg form-control")) }}
-						{{ Form::submit('Update', array('class'=>'btn btn-lg btn-primary'))}}
+                	<h3>New Biography</h3>
+                	<div id="createBox">
+						{{ Form::open(array('files'=>false, 'route'=>array('staff-biographies.store','cranleigh')))}}
+						{{ Form::bsText('username', null, ["description"=>"Please ensure this is the user's username. No spaces or special characters."]) }}
+						{{ Form::wysiwyg('biography', '', array("class"=>"wysiwyg form-control")) }}
+						{{ Form::submit('Create', array('class'=>'btn btn-lg btn-primary'))}}
 						{{ Form::close() }}
                 	</div>
                 </div>
@@ -33,10 +31,4 @@
 </div>
 @endsection
 @section('footer-scripts')
-	<script type="text/javascript">
-		jQuery("#edit-link").click(function() {
-			$(this).slideUp();
-			$("#editBox").slideDown();
-		});
-	</script>
 @endsection
