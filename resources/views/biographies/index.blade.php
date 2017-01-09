@@ -20,6 +20,7 @@
                 		<thead>
                 			<th>User</th>
                 			<th>Biography</th>
+                			<th><i class="fa fa-fw fa-circle-o"></i><span class="sr-only">Status</span></th>
                 			<th>Last Updated</th>
                 			<th>Updated By</th>
                 		</thead>
@@ -30,6 +31,7 @@
                     				<a href="{{route('staff-biographies.edit', ['school'=>get_domain(), 'id'=>$account->id])}}">{{strtoupper($account->username)}}</a>
 								</td>
 								<td>{{substr(strip_tags($account->biography), 0, 70)}}</td>
+								<td>{!!$account->get_status()!!}</td>
                     			<td>{{$account->updated_at}}</td>
                     			<td>{{$account->updater_user['name']}}</td>
                     		</tr>
@@ -41,4 +43,11 @@
         </div>
     </div>
 </div>
+@endsection
+@section('footer-scripts')
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			jQuery('[data-toggle="tooltip"]').tooltip();
+		});
+	</script>
 @endsection
