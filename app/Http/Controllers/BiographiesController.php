@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Validator;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 
 class BiographiesController extends Controller
@@ -24,8 +25,9 @@ class BiographiesController extends Controller
 			$person = \App\StaffBiographies::where('username', $username)->firstOrFail();
 			$id = $person->id;
 			return redirect(route('staff-biographies.edit', ['school'=>$school, 'id'=>$id]));
-		} catch(Exception $e) {
-			\Request::session()->flash("message", "That User's Biography could not be found.");
+		} catch(ModelNotFoundException $e) {
+			return view("biographies.notfound", ['school'=>$school]);
+			\Request::session()->flash("message", "That user's biography could not be found.");
 			return redirect(route('staff-biographies.index', ['school'=>$school]));
 		}
 	}
