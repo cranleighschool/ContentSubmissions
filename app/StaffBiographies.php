@@ -11,5 +11,7 @@ class StaffBiographies extends Model
 	protected $table = 'staff_biographies';
     protected $primaryKey = 'id';   //
     
-    
+    public function updater_user() {
+	    return $this->hasOne('App\User', 'id', 'updated_by');
+    }
 }

@@ -21,6 +21,7 @@
                 			<th>User</th>
                 			<th>Biography</th>
                 			<th>Last Updated</th>
+                			<th>Updated By</th>
                 		</thead>
                     @foreach($biographies as $account)
                     	<tbody>
@@ -30,6 +31,7 @@
 								</td>
 								<td>{{substr(strip_tags($account->biography), 0, 70)}}</td>
                     			<td>{{$account->updated_at}}</td>
+                    			<td>{{$account->updater_user['name']}}</td>
                     		</tr>
                     	</tbody>
                     @endforeach
