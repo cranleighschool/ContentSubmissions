@@ -10,7 +10,8 @@ use Validator;
 
 class BiographiesController extends Controller
 {
-	 public function __construct()
+	public $allowed_users = ['JRC', 'FRB', 'LAC'];
+	public function __construct()
     {
         //	var_dump(\Route::current()->parameters());
         
@@ -46,7 +47,11 @@ class BiographiesController extends Controller
      */
     public function create($school)
     {
-        //
+	    
+        if (!in_array(strtoupper(\Auth::user()->email), $this->allowed_users))
+	        abort(403);
+	        
+	        
         return view("biographies.create", ['school'=>$school]);
     }
 
@@ -120,6 +125,9 @@ class BiographiesController extends Controller
      */
     public function update(Request $request, $school, $id)
     {
+	    if (!in_array(strtoupper(\Auth::user()->email), $this->allowed_users))
+	        abort(403);
+	        
 		$bio = \App\StaffBiographies::findOrFail($id);
 		$bio->biography = $request->biography;
 		$bio->save();
