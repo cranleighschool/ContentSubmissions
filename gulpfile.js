@@ -13,11 +13,11 @@ require('laravel-elixir-vue');
  */
 
 elixir(function(mix) {
-    mix.sass(['app.scss']);
-	mix.scripts(['app.js']);
-	mix.copy('resources/assets/images', 'public/build/images');
+	mix.copy('resources/assets/images', 'public/images');
+	mix.sass(['app.scss']).webpack('app.js');
+//	mix.scripts(['app.js']);
 });
 
-//elixir(function(mix) {
-//	mix.version(['css/app.css', 'js/all.js']);
-//});
+/*elixir(function(mix) {
+	mix.version(['css/app.css']);
+});*/

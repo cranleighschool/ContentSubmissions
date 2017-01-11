@@ -24,8 +24,8 @@
                 			<th>Last Updated</th>
                 			<th>Updated By</th>
                 		</thead>
+                		<tbody>
                     @foreach($biographies as $account)
-                    	<tbody>
                     		<tr>
                     			<td>
                     				<a href="{{route('staff-biographies.edit', ['school'=>get_domain(), 'id'=>$account->id])}}">{{strtoupper($account->username)}}</a>
@@ -33,16 +33,16 @@
 								<td>{{substr(strip_tags($account->biography), 0, 70)}}</td>
 								<td>{!!$account->get_status()!!}</td>
                     			<td>{{$account->updated_at}}</td>
-                    			<td>{{$account->updater_user['name']}}</td>
+                    		<td>{{$account->updater_user['name']}}</td>
                     		</tr>
-                    	</tbody>
                     @endforeach
+                		</tbody>
                 	</table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                </div> <!-- .panel-body -->
+            </div> <!-- .panel-default -->
+        </div><!-- .col -->
+    </div> <!-- .row -->
+</div> <!-- .container -->
 @endsection
 @section('footer-scripts')
 	<script type="text/javascript">
