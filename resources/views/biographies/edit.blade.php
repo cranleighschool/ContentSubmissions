@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'List Submissions')
+@section('title', "Edit Biography")
 @section('content')
 <div class="container">
     <div class="row">
@@ -17,7 +17,7 @@
                 <div class="panel-body">
                 
                 	<h3>Username: {{strtoupper($user->username)}}</h3>
-                	<div class="well well-sm">{!!$user->biography!!}</div>
+                	<div class="well well-sm show-biography">{!!$user->biography!!}</div>
                 	<button class="btn btn-lg btn-info" id="edit-link">Edit Biography</button>
                 	<div id="editBox" style="display:none;">
 						{{ Form::open(array('files'=>false,'method'=>'PUT', 'route'=>array('staff-biographies.update','cranleigh', $user->id)))}}

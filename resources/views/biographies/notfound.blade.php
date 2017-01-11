@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'List Submissions')
+@section('title', 'User Not Found')
 @section('content')
 <div class="container">
     <div class="row">
