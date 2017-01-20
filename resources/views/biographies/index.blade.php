@@ -9,13 +9,17 @@
 		@endif
 			<div class="panel panel-default">
 				<div class="panel-heading clearfix">
-					<h2 class="panel-title pull-left" style="padding-top:7.5px;">Staff Biographies</h2>
-                	<div class="btn-group pull-right">
+				<div class="btn-group pull-right">
                 	<a href="{{route('staff-biographies.create', ['school'=>'cranleigh'])}}" class="btn btn-sm btn-success">Add New</a>
-                	</div>
+                </div>
+				
+				<h2 class="panel-title" style="padding-top:7.5px;">Staff Biographies</h2>
+
+                	
                 </div>
                 <div class="panel-body">
-                
+					<span class="label label-info">{{count($biographies)}} Biographies</span>
+
                 	<table class="table table-hover table-condensed">
                 		<thead>
                 			<th>User</th>
@@ -25,7 +29,7 @@
                 			<th>Updated By</th>
                 		</thead>
                 		<tbody>
-                    @foreach($biographies as $account)
+                    @foreach($biographies->sortByDesc("updated_at") as $account)
                     		<tr>
                     			<td>
                     				<a href="{{route('staff-biographies.edit', ['school'=>get_domain(), 'id'=>$account->id])}}">{{strtoupper($account->username)}}</a>
