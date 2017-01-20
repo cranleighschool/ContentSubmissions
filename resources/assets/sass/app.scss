@@ -3,6 +3,12 @@
 @import "variables";
 $link-color: #8CB7E8;
 
+/* Fonts */
+h1,h2,h3,h4,h5,.navbar-brand,.panel-heading {
+	font-family: "AspW-Rg";
+	text-transform: uppercase;
+}
+
 form.delete-form {
 	display: inline;
 }
@@ -15,6 +21,9 @@ nav.navbar-default {
 		}
 	}	
 }
+table thead {
+	font-family: "Benton Sans Reg", sans-serif;
+}
 body {
 	background-color:#0c223f;
 	background-image:url(../images/crest_25.png);
@@ -24,6 +33,7 @@ body {
 	padding-bottom: 50px; 
 	background-attachment: fixed;
 	padding-top:70px;
+	font-family: "Benton Sans Lt", sans-serif;
 	
 	@include respondto(phone, tablet-portrait) {
 		padding-top: 0px;
@@ -116,5 +126,9 @@ body.cranprep {
 	line-height: 1.5em;
 }
 .fa-btn {
-            margin-right: 6px;
-        }
+	margin-right: 6px;
+}
+.navbar-default .navbar-brand:hover, 
+.navbar-default .navbar-brand:focus {
+	color:#fff;
+}

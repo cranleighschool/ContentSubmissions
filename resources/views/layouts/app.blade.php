@@ -7,12 +7,15 @@
 
     <title>Cranleigh Marketing - @yield('title')</title>
 
-    <!-- Styles -->
-   <link href="{{ elixir('css/app.css') }}" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+	<!-- Styles -->
+	<link rel="stylesheet" href="//cdn.cranleigh.org/css/AspW-Rg.css" crossorigin="anonymous" />
+	<link rel='stylesheet' id='benton-sans-font-css'  href='//cloud.typenetwork.com/projects/772/fontface.css?ver=1.0' type='text/css' media='all' />
+
+	<link href="{{ elixir('css/app.css') }}" rel="stylesheet">
 	
     <!-- Fonts -->
-    
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+	    
 
 
 	<script type="text/javascript" src="//cdn.tinymce.com/4/tinymce.min.js"></script>
