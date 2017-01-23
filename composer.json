@@ -12,7 +12,8 @@
         "laravel/framework": "5.3.*",
         "laravelcollective/html": "^5.2",
         "adldap2/adldap2-laravel": "^2.1",
-	"matriphe/imageupload": "*"
+	"matriphe/imageupload": "*",
+        "guzzlehttp/guzzle": "^6.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
