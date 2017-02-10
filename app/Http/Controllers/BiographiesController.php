@@ -77,7 +77,7 @@ class BiographiesController extends Controller
 
 		$bio = new \App\StaffBiographies;
 		$bio->username = $request->username;
-		$bio->biography = $request->biography;
+		$bio->biography = str_replace("&nbsp;", " ", $request->biography);
 		$bio->save();
 		
 		\Request::session()->flash("message", "Biography has been added for: &quot;".$request->username."&quot;.");
@@ -131,7 +131,7 @@ class BiographiesController extends Controller
 	        abort(403);
 	        
 		$bio = \App\StaffBiographies::findOrFail($id);
-		$bio->biography = $request->biography;
+		$bio->biography = str_replace("&nbsp;", " ", $request->biography);
 		$bio->save();
 
         \Request::session()->flash("message", "Updated: ".$request->username."'s Biography");
