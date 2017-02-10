@@ -54,4 +54,29 @@ class StaffBiographies extends Model
     public function icon($color, $text) {
 	    return "<span class=\"text-".$color."\"><i data-toggle=\"tooltip\" title=\"".$text."\" class=\"fa fa-fw fa-circle\"></i></span>";
     }
+    public function get_name() {
+	    $api = new Isamsdb();
+	    $username = $this->username;
+		$staff = \Cache::remember('isams_staff', 120, function() use ($api) {
+			$staff = $api->staff();
+			$new_staff = [];
+			foreach($staff as $person):
+				$x = new \stdClass();
+				$x->Initials = $person->Initials;
+				$x->Forename = $person->Forename;
+				$x->Surname = $person->Surname;
+				$new_staff[] = $x;
+			endforeach;
+			return $new_staff;
+		});
+		
+		$user_obj = \Cache::remember('isams_staff_'.$username, 120, function() use ($staff, $api, $username) {
+			return $api->findUserFromUsername($staff, $username);
+		});
+		
+		return $user_obj;
+//		$output = $user_obj;
+		
+		
+    }
 }
