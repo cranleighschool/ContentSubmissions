@@ -24,6 +24,9 @@ nav.navbar-default {
 table thead {
 	font-family: "Benton Sans Reg", sans-serif;
 }
+.container>.row:first-of-type {
+	margin-top: 10px;
+}
 body {
 	background-color:#0c223f;
 	background-image:url(../images/crest_25.png);
@@ -32,7 +35,7 @@ body {
 	color:#000;
 	padding-bottom: 50px; 
 	background-attachment: fixed;
-	padding-top:70px;
+	padding-top:50px;
 	font-family: "Benton Sans Lt", sans-serif;
 	
 	@include respondto(phone, tablet-portrait) {
@@ -131,4 +134,50 @@ body.cranprep {
 .navbar-default .navbar-brand:hover, 
 .navbar-default .navbar-brand:focus {
 	color:#fff;
+}
+.hero {
+	opacity: 0.5;
+	height: 500px;
+	height: 50vh;
+	overflow: hidden;
+	position: relative;
+	z-index: -1;
+	/* This blends the hero area with the main header while the image loads. */
+	background-color: #0c223f;
+	/* Default bg image to use if none specified (should be as generic as possible) */
+	background-image: url('../img/hero.jpg');
+	background-position: center center;
+	background-attachment: scroll;
+	-webkit-background-size: cover;
+	   -moz-background-size: cover;
+			background-size: cover;
+
+	&.slim {
+		/* Fallback height */
+		height: 250px;
+		height: 35vh;
+		min-height: 200px;
+	}
+
+	/*
+	 * The background image is currently changed by adding an additional class.
+	 * In WordPress, this will probably be added as an inline style as the
+	 * image URL will be coming from the WP content.
+	 */
+	&.admissions { background-image: url('../img/admissions.jpg'); }
+	&.cubitt { background-image: url('../img/houses/cubitt/external-hero.jpg'); }
+	&.subject { background-image: url('../img/history.jpg'); }
+	&.rugby { background-image: url('../img/rugby-hero.jpg'); }
+}
+
+@media screen and (min-width: 62em) {
+	.hero {
+		/* Disabled for now due to weird resizing bug. See #22 */
+		/* background-attachment: fixed; */
+	}
+}
+
+/* Subject to change. Is this good for most images? */
+@media (min-width: 1450px) {
+	.hero { height: 70vh; }
 }
