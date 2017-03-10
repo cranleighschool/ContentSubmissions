@@ -32,7 +32,7 @@
                     			<div class="panel-heading">Create Website Hero Images</div>
                     			<div class="panel-body">
                     				<p>Step by Step Instructions on how to create a hero image</p>
-                    				<a href="/hero-manager" class="btn btn-sm btn-default btn-block">Coming Soon</a>
+                    				<a href="/hero-manager" class="btn btn-sm btn-primary btn-block">Visit</a>
                     			</div>
                     		</div>
                     	</div>
