@@ -36,7 +36,18 @@
                     			</div>
                     		</div>
                     	</div>
-                    </div>
+					</div>
+					<div class="row">
+	                    <div class="col-md-4">
+	                    	<div class="panel panel-success">
+	                    		<div class="panel-heading">Web Friendly Asset Bank Photos</div>
+	                    		<div class="panel-body">
+	                    			<p>A simple form that will download you an Asset Bank photo using the Asset Bank ID. Meaning you don't have to log into Asset Bank itself!</p>
+									<a href="/asset-bank-download" class="btn btn-sm btn-primary btn-block">Save me time</a>
+	                    		</div>
+	                    	</div>
+	                    </div>
+					</div>
                 </div>
             </div>
         </div>
