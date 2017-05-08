@@ -16,7 +16,7 @@ class AssetBankController extends Controller
 	}   
     
     public function index() {
-        return view("asset-bank-download.search");
+        return view("asset-bank-download.index");
     }
     
     public function download(Request $request, $school) {
