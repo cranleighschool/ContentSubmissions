@@ -28,21 +28,31 @@
 									<dd>{{$output->photographer}}</dd>
 									<dt>Tags</dt>
 									<dd><span class="label label-default">{!! implode($output->tags, "</span> <span class=\"label label-default\">") !!}</span></dd>
-									<dt>Download</dt>
-									<dd><a href="{{$output->photo}}/800" target="_blank">Website Quality Photo</a></dd>
-									<dt>Hero Download</dt>
-									<dd><a href="{{$output->photo}}/2880" target="_blank">Hero Image Quality Photo</a></dd>
+								</dl>
+								<div class="row">
+									<div class="col-sm-6">
+										<a class="btn btn-sm btn-success" href="{{$output->photo}}/800" target="_blank">Download Website Quality Photo</a>
+									</div>
+									<div class="col-sm-6">
+										<a class="btn btn-sm btn-info" href="{{$output->photo}}/2880" target="_blank">Download Hero Image Quality Photo</a>
+									</div>
+								</div>
 								</dl>
 							</div>
                 		</div>
                 		
                 	@else
-                		@if ($output->code==404)
+                		<div class="alert alert-{{$panel}}"
+                		@if ($output->code==403)
+	                		<p><strong>Error 403: {{$output->error}}</strong></p>
+							<p class="text-danger">The image you were trying to access is not accessible due to rules from the Asset Bank API. This normally means that the image isn't marked as "Suitable for Publication" or doesn't meet website quality criteria in some other way. This is all a work in progress and if you feel something is wrong please email: <a href="mailto:frb@cranleigh.org">frb@cranleigh.org</a>.</p>                		
+
+                		@elseif ($output->code==404)
 	                		<p class="text-danger">The asset ID you were searching for could not be found. Please ensure you are typing it correctly. If this error persists, double check on Asset Bank then report the error to <a href="mailto:frb@cranleigh.org">frb@cranleigh.org</a>.</p>                		
                 		@else
                     		<p class="text-danger">Unknown Error: {{$output->code}}. Please report this to <a href="mailto:frb@cranleigh.org">frb@cranleigh.org</a>.</p>            		
                 		@endif
-
+						</div>
                 	@endif
                 	<hr />
                 	<h3>Go again?</h3>
