@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class BiographiesController extends Controller
 {
-	public $allowed_users = ['JRC', 'FRB', 'LAC'];
+	public $allowed_users = ['JRC', 'FRB', 'LAC', 'DJF'];
 	public function __construct()
     {
         //	var_dump(\Route::current()->parameters());
