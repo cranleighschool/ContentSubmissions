@@ -34,17 +34,20 @@ class HeroController extends Controller
     }
     
 public function HeroSituPost(Request $request) { //$school, int $assetId, string $type=null) {
+		dump($request);
 		$type = $request->hero_type;
 		if (!empty($request->{"asset-bank-id"})) {
 		    $url = "https://assetbankapi.cranleigh.org/forwebsite/".$request->{"asset-bank-id"}."/photo/2880";
 		} elseif (!empty($request->url)) {
 			$url = $request->url;
-		} elseif ($request->hasFile('photo')) {
+		} elseif ($request->hasFile('photo') && $request->photo->isValid()) {
 			$photo = base64_encode(file_get_contents($_FILES["photo"]["tmp_name"]));
 			$extension = $request->photo->extension();
 
 			$image =  "data:image/".$extension.";base64,".$photo;
 			$url = $image;
+		} else {
+			$url = "http://www.socialribbit.com/wp-content/uploads/2011/07/404.jpg"
 		}
 
 	    return view('hero-manager/situ', ['type' => $type, 'url' => $url]);

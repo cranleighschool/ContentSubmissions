@@ -255,10 +255,13 @@ var photocrati_image_protection_global = {"enabled":"0"};
 			<div class="row border-bottom">
 
 @if (strpos($url, 'assetbankapi.cranleigh.org/forwebsite') !== false)
-
-
 				<div class="col-md-12">
 					<div class="alert alert-info"><p><strong>Here to Help</strong></p><p>I noticed you generated this test using an Asset Bank ID number, would you like to Download the Hero sized version of that image?</p><p>If so, <a href="{{$url}}">Click Here</a>!</p>
+				</div>
+@endif
+@if (strpos($url, 'http://www.socialribbit.com/wp-content/uploads/2011/07/404.jpg') !== false)
+				<div class="col-md-12">
+					<div class="alert alert-danger"><p><strong>Oops</strong></p><p>I think the image you tried to upload is too big for us to compute. Does it need to be that big? Try reducing the image down a bit first, please!</p>
 				</div>
 @endif
 				<div class="col-md-12">
