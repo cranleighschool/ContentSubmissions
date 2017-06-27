@@ -26,15 +26,23 @@
 									<dd>{{$output->description}}</dd>
 									<dt>Photographer</dt>
 									<dd>{{$output->photographer}}</dd>
+									<dt>Date Uploaded</dt>
+									<dd>{{$output->dateAdded}}</dd>
 									<dt>Tags</dt>
-									<dd><span class="label label-default">{!! implode($output->tags, "</span> <span class=\"label label-default\">") !!}</span></dd>
+									<dd><span class="label label-default">{!! implode($output->mergedTags, "</span> <span class=\"label label-default\">") !!}</span></dd>
 								</dl>
 								<div class="row">
-									<div class="col-sm-6">
-										<a class="btn btn-sm btn-success" href="{{$output->photo}}/800" target="_blank">Download Website Quality Photo</a>
+									<div class="col-sm-3">
+										<a class="btn btn-sm btn-success" href="{{$output->websiteQuality}}" target="_blank">Download Website Quality Photo</a>
 									</div>
-									<div class="col-sm-6">
-										<a class="btn btn-sm btn-info" href="{{$output->photo}}/2880" target="_blank">Download Hero Image Quality Photo</a>
+									<div class="col-sm-3">
+										<a class="btn btn-sm btn-info" href="{{$output->heroQuality}}" target="_blank">Download Hero Image Quality Photo</a>
+									</div>
+									<div class="col-sm-3">
+										<a class="btn btn-sm btn-info" href="{{$output->heroQuality}}" target="_blank">In Situ Example</a>
+									</div>
+									<div class="col-sm-3">
+										<a class="btn btn-sm btn-info" href="{{route("insitu", ["cranleigh", "slim", $output->heroQuality])}}" target="_blank">In Situ Slim Example</a>
 									</div>
 								</div>
 								</dl>

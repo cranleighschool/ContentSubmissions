@@ -18,7 +18,12 @@ class AssetBankController extends Controller
     public function index() {
         return view("asset-bank-download.index");
     }
-    
+    public function HeroSitu($school, int $assetId, string $type=null) {
+	    $url = "https://assetbankapi.cranleigh.org/forwebsite/".$assetId."/photo/2880";
+//		die($url);
+	    return view('hero-manager/situ', ['type' => $type, 'url' => $url]);
+
+    }
     public function download(Request $request, $school) {
 		$panel_type = "warning";
 
@@ -28,6 +33,8 @@ class AssetBankController extends Controller
 			$statuscode = $res->getStatusCode();
 	    	$body = json_decode($res->getbody(), true);
 	    			$panel_type = "success";
+	    	$body['mergedTags'] = array_merge($body['tags'], $body['rating']);
+
 		} catch (GuzzleException $e) {
 			$body = json_decode($e->getResponse()->getBody()->getContents());
 

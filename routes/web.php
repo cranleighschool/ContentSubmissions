@@ -36,9 +36,11 @@ Route::group(['domain'=>env('CRAN_SUBDOMAIN').'.{school}.org'], function ($schoo
 	
 	Route::get('hero-manager', 'HeroController@dashboard');
 	Route::post('hero-manager', 'HeroController@getAssetBankPhoto');
-	
+	Route::get('hero-manager/situ/{assetId}/{type?}', 'HeroController@HeroSitu')->name("insitu");
+	Route::post('hero-manager/situ', 'HeroController@HeroSituPost')->name('insitupost');
 	Route::get('asset-bank-download', 'AssetBankController@index');
 	Route::post('asset-bank-download', 'AssetBankController@download');
+
 });
 
 Route::get('/home', 'HomeController@index');
