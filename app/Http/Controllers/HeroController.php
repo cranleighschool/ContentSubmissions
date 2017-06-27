@@ -47,7 +47,7 @@ public function HeroSituPost(Request $request) { //$school, int $assetId, string
 			$image =  "data:image/".$extension.";base64,".$photo;
 			$url = $image;
 		} else {
-			$url = "http://www.socialribbit.com/wp-content/uploads/2011/07/404.jpg"
+			$url = "http://www.socialribbit.com/wp-content/uploads/2011/07/404.jpg";
 		}
 
 	    return view('hero-manager/situ', ['type' => $type, 'url' => $url]);
