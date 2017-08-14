@@ -19,6 +19,7 @@ class CreateStaffBiographiesTable extends Migration
             $table->text('biography');
             $table->string('updated_by');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

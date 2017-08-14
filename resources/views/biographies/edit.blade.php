@@ -27,6 +27,16 @@
 						{{ Form::close() }}
                 	</div>
                 </div>
+				<div class="panel-footer">
+					<div class="text-right">
+						<a href="{{route('staff-biographies.destroy', ["id" => $user, "school" => $school])}}" onclick="event.preventDefault(); document.getElementById('deleteBio').submit();" class="btn btn-sm btn-danger">Delete This Biography</a>
+						<form id="deleteBio" action="{{route('staff-biographies.destroy', ["id" => $user, "school" => $school])}}" method="POST" style="display: none;">
+							{{method_field('DELETE')}}
+							{{csrf_field()}}
+							<input type="submit" value="logout" style="display: none;">
+						</form>
+					</div>
+				</div>
             </div>
         </div>
     </div>

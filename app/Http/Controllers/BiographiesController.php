@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\StaffBiographies;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -14,8 +15,7 @@ class BiographiesController extends Controller
 	public $allowed_users = ['JRC', 'FRB', 'LAC', 'DJF'];
 	public function __construct()
     {
-        //	var_dump(\Route::current()->parameters());
-        
+
         $this->middleware('auth');
 
 }
@@ -38,11 +38,17 @@ class BiographiesController extends Controller
      */
     public function index($school)
     {
-        $biographies = \App\StaffBiographies::all();
+        $biographies = StaffBiographies::all();
         return view("biographies.index", ['biographies'=>$biographies]);
     }
 
-    /**
+
+	public function showDeleted() {
+		$biographies = StaffBiographies::withTrashed()->where("deleted_at", "!=", null)->get();
+		return view("biographies.deleted", ['biographies'=>$biographies]);
+	}
+
+	/**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -75,7 +81,7 @@ class BiographiesController extends Controller
             return \Redirect::back()->withErrors($validator)->withInput();
         }
 
-		$bio = new \App\StaffBiographies;
+		$bio = new StaffBiographies;
 		$bio->username = $request->username;
 		$bio->biography = str_replace("&nbsp;", " ", $request->biography);
 		$bio->save();
@@ -113,8 +119,8 @@ class BiographiesController extends Controller
     public function edit($school, $id)
     {
         //
-        $bio = \App\StaffBiographies::findOrFail($id);
-        return view("biographies.edit", ['user'=>$bio]);
+        $bio = StaffBiographies::findOrFail($id);
+        return view("biographies.edit", ['user'=>$bio, 'school'=>$school]);
 
     }
 
@@ -130,7 +136,7 @@ class BiographiesController extends Controller
 	    if (!in_array(strtoupper(\Auth::user()->email), $this->allowed_users))
 	        abort(403);
 	        
-		$bio = \App\StaffBiographies::findOrFail($id);
+		$bio = StaffBiographies::findOrFail($id);
 		$bio->biography = str_replace("&nbsp;", " ", $request->biography);
 		$bio->save();
 
@@ -148,6 +154,19 @@ class BiographiesController extends Controller
      */
     public function destroy($school, $id)
     {
-        //
+		$bio = StaffBiographies::findOrFail($id);
+		$bio->delete();
+
+		session()->flash("message", "Deleted ".$bio->username."'s Biography!");
+		return redirect(route('staff-biographies.index', ['school'=>$school, 'id' => $id]));
+
+    }
+
+    public function restore() {
+    	$bio = StaffBiographies::withTrashed()->find($_POST['account_id']);
+    	$bio->restore();
+
+    	session()->flash("message", "Restored: ".$bio->username);
+    	return redirect(route("staff-biographies.edit", ['school'=>get_domain(), 'id' => $bio->id]));
     }
 }

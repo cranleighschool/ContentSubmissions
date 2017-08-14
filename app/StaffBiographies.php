@@ -4,13 +4,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Updater;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class StaffBiographies extends Model
 {
-	use Updater;
+	use Updater, SoftDeletes;
 	protected $table = 'staff_biographies';
     protected $primaryKey = 'id';   //
-    
+
+	protected $dates = [
+		"deleted_at",
+		"created_at",
+		"updated_at"
+	];
+
     public function updater_user() {
 	    return $this->hasOne('App\User', 'id', 'updated_by');
     }

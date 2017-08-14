@@ -30,6 +30,8 @@ Route::group(['domain'=>env('CRAN_SUBDOMAIN').'.{school}.org'], function ($schoo
         
     Route::resource('submissions', 'SubmissionController');
     Route::resource('twitter', 'TwitterAccountsController');
+	Route::get('staff-biographies/deleted', 'BiographiesController@showDeleted');
+	Route::post('staff-biographies/restore', 'BiographiesController@restore')->name("staff-biographies.restore");
     Route::resource('staff-biographies', 'BiographiesController');
     Route::get('staff-biographies/search/{username}', 'BiographiesController@search');
 	Route::get('staff-biographies/find/{username}', 'BiographiesController@search');
@@ -45,17 +47,3 @@ Route::group(['domain'=>env('CRAN_SUBDOMAIN').'.{school}.org'], function ($schoo
 
 Route::get('/home', 'HomeController@index');
 
-function get_domain($url=null)
-{
-//	dd($_SERVER['HTTP_HOST']);
-		if ($url===null)
-			$url = "http://".$_SERVER['HTTP_HOST'];
-      $urlobj=parse_url($url);
-      $domain=$urlobj['host'];
-      if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs)) {
-        $top_domain = $regs['domain'];
-        
-        return explode('.', $top_domain)[0];
-      }
-      return false;
-}
