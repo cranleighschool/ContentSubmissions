@@ -173,6 +173,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         App\Providers\MacroServiceProvider::class,
+        Thujohn\Twitter\TwitterServiceProvider::class,
         
         /*
 	      * ADLDAP
@@ -236,6 +237,8 @@ return [
         'Input' => Illuminate\Support\Facades\Input::class,
         'Adldap' => Adldap\Laravel\Facades\Adldap::class,
         'Imageupload' => Matriphe\Imageupload\ImageuploadFacade::class,
+        'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
+
 
     ],
 

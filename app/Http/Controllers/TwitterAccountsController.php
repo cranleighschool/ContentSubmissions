@@ -5,10 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\TwitterAPI;
+use Thujohn\Twitter\Facades\Twitter;
 
 class TwitterAccountsController extends Controller
 {
-
+	public function __construct() {
+		$this->twitter = new TwitterAPI();
+	}
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +20,11 @@ class TwitterAccountsController extends Controller
      */
     public function index($school)
     {
-        //
-        $accounts = \App\TwitterAccounts::all();
+//	    $creds = Twitter::getCredentials(['include_email'=>'true']);
+//		$creds = Twitter::get("users/show", ["screen_name"=>"cranleighprep"]);
+//	    dump($creds);
+		//return Twitter::getMentionsTimeline(['count' => 20, 'format' => 'json']);
+		$accounts = \App\TwitterAccounts::all();
         return view("twitteraccounts.index", ['accounts'=>$accounts]);
     }
 
