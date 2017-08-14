@@ -22,10 +22,10 @@ class SubmissionController extends Controller
         
         $this->middleware('auth');
 
-        $this->get_school(\Route::current()->parameters()['school']);
-        if ($this->school == false) :
-            abort(404);
-        endif;
+//        $this->get_school(\Route::current()->parameters()['school']);
+//        if ($this->school == false) :
+//            abort(404);
+//        endif;
     }
     
     protected function get_school($school)
