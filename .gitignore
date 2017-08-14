@@ -3,3 +3,4 @@
 /public/storage
 .env
 .DS_Store
+.idea/
