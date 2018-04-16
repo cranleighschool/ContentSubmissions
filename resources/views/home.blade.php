@@ -47,6 +47,15 @@
 	                    		</div>
 	                    	</div>
 	                    </div>
+						<div class="col-md-4">
+							<div class="panel panel-default panel-cranleigh">
+								<div class="panel-heading">Campaign Tracking Link Generator</div>
+								<div class="panel-body">
+									<p>Generate a special link that will help us track campaigns with Google Analytics.</p>
+									<a href="/utm" class="btn btn-sm btn-primary btn-block">Generate Link</a>
+								</div>
+							</div>
+						</div>
 					</div>
                 </div>
             </div>

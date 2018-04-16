@@ -43,6 +43,7 @@ Route::group(['domain'=>env('CRAN_SUBDOMAIN').'.{school}.org'], function ($schoo
 	Route::get('asset-bank-download', 'AssetBankController@index');
 	Route::post('asset-bank-download', 'AssetBankController@download');
 
+	Route::get('utm', 'UTMController@index')->name('utm');
 });
 
 Route::get('/home', 'HomeController@index');
