@@ -173,6 +173,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         App\Providers\MacroServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class,
         
         /*
 	      * ADLDAP
