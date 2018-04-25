@@ -34,6 +34,9 @@ class HeroController extends Controller
     }
     
 public function HeroSituPost(Request $request) { //$school, int $assetId, string $type=null) {
+   ini_set('upload_max_filesize','8M');
+
+
 		$type = $request->hero_type;
 		if (!empty($request->{"asset-bank-id"})) {
 		    $url = "https://assetbankapi.cranleigh.org/forwebsite/".$request->{"asset-bank-id"}."/photo/2880";
