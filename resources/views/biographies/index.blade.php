@@ -18,7 +18,7 @@
                 	
                 </div>
                 <div class="panel-body">
-					<span class="label label-info">Some Biographies</span>
+					<span class="label label-info">{{ $biographies->count() }} Biographies</span>
 
                 	<table class="table table-hover table-condensed">
                 		<thead>

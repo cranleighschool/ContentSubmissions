@@ -25,7 +25,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/submissions';
+    protected $redirectTo = '/';
     protected $username = 'email';
 
 
