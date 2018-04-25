@@ -12,13 +12,13 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class BiographiesController extends Controller
 {
-	public $allowed_users = ['JRC', 'FRB', 'LAC', 'DJF'];
+	public $allowed_users = ['JRC', 'FRB', 'LAC', 'DJF', 'CCQ'];
 	public function __construct()
     {
 
         $this->middleware('auth');
 
-}
+    }
 	
 	public function search($school, $username){
 		try {
@@ -55,7 +55,6 @@ class BiographiesController extends Controller
      */
     public function create($school)
     {
-	    
         if (!in_array(strtoupper(\Auth::user()->email), $this->allowed_users))
 	        abort(403);
 	        
@@ -154,6 +153,9 @@ class BiographiesController extends Controller
      */
     public function destroy($school, $id)
     {
+        if (!in_array(strtoupper(\Auth::user()->email), $this->allowed_users))
+            abort(403);
+
 		$bio = StaffBiographies::findOrFail($id);
 		$bio->delete();
 
