@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class BiographiesController extends Controller
 {
-	public $allowed_users = ['JRC', 'FRB', 'LAC', 'DJF', 'CCQ'];
+	public $allowed_users = ['JRC', 'FRB', 'LAC', 'DJF', 'NJM'];
 	public function __construct()
     {
 
