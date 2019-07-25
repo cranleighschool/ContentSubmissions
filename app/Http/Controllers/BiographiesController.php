@@ -38,6 +38,7 @@ class BiographiesController extends Controller
      */
     public function index($school)
     {
+	return redirect('https://people.cranleigh.org/');
         $biographies = StaffBiographies::all();
         return view("biographies.index", ['biographies'=>$biographies]);
     }

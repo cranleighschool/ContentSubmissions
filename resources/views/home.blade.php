@@ -11,10 +11,10 @@
                     <div class="row">
                     	<div class="col-md-4">
                     		<div class="panel panel-primary">
-                    			<div class="panel-heading">Staff Biographies</div>
+                    			<div class="panel-heading">Staff Bios &amp; Photos</div>
                     			<div class="panel-body">
-                    				<p>Manage the staff biographies to syncronise to iSAMS and the Website.</p>
-                    				<a href="/staff-biographies" class="btn btn-sm btn-primary pull-right btn-block">Visit</a>
+                    				<p>Manage the staff biographies and photographs that sync to the Website.</p>
+                    				<a href="https://people.cranleigh.org/" class="btn btn-sm btn-primary pull-right btn-block">Cranleigh People Manager</a>
                     			</div>
                     		</div>
                     	</div>
