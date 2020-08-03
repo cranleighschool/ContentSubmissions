@@ -1,4 +1,12 @@
 # Marketing Portal
+
+## Archived
+This project has been archived on 1st August 2020. 
+The Hero Image and Asset Bank functions of this project have been migrated to the People Manager Project.
+
+
+--
+
 This repo is a Laravel 5.3 install, with the purpose of being a place where marketing actions and information can be taken and stored. 
 
 ## Currently
