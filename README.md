@@ -2,7 +2,7 @@
 
 ## Archived
 This project has been archived on 1st August 2020. 
-The Hero Image and Asset Bank functions of this project have been migrated to the People Manager Project.
+The Hero Image and Asset Bank functions of this project have been migrated to the [People Manager Project](https://github.com/cranleighschool/people-manager).
 
 
 --
